@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+table {
+      width: 60%;
+      border-collapse: collapse;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
