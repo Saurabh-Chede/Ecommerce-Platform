@@ -1,17 +1,22 @@
-import { useState } from "react";
-
-const products = [
-  { id: 1, product: "Vaseline", price: 100 },
-  { id: 2, product: "Gelly", price: 200 },
-  { id: 3, product: "Lotion", price: 140 },
-];
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const [cart, setCart] = useState([]);
   const [query, setQuery] = useState("");
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products?=_limit=10")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data)
+      })
+      .catch((err) => console.error("API Error:", err));
+  })
 
   const filterProducts = products.filter((product) =>
-    product.product.toLowerCase().includes(query)
+    product.title.toLowerCase().includes(query)
   );
 
   const addToCart = (product) => {
@@ -47,6 +52,8 @@ function Cart() {
     acc + item.price * item.quantity
   ), 0)
 
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <>
       <input
@@ -61,12 +68,18 @@ function Cart() {
         {/* Products */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
           {filterProducts.map((product) => (
+            <Link to={`/product/${product.id}`}>
             <div
               key={product.id}
               className="bg-white shadow-md rounded-xl p-5 text-center border hover:shadow-lg transition"
             >
-              <h2 className="text-xl font-semibold mb-2">{product.product}</h2>
-              <p className="text-gray-700 mb-4 text-lg">₹{product.price}</p>
+              <img
+                src={product.image}
+                alt={product.title}
+                className="h-32 mx-auto mb-2 object-contain"
+              />
+              <h2 className="text-xl font-semibold mb-2">{product.title}</h2>
+              <p className="text-gray-700 mb-4 text-lg">${product.price}</p>
               <button
                 onClick={() => addToCart(product)}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
@@ -74,11 +87,12 @@ function Cart() {
                 Add to Cart
               </button>
             </div>
+          </Link>
           ))}
         </div>
 
         {/* Cart Section */}
-        <h2 className="text-2xl font-bold mb-4">Cart ({cart.length} items)</h2>
+        <h2 className="text-2xl font-bold mb-4">Cart ({totalItems} items)</h2>
 
         {cart.length === 0 ? (
           <p className="text-gray-600">Cart is empty</p>
@@ -89,8 +103,9 @@ function Cart() {
                 key={item.id}
                 className="bg-white p-4 rounded-xl shadow border"
               >
-                <h3 className="text-lg font-semibold mb-1">{item.product}</h3>
+                <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
                 <p className="text-gray-700 mb-2">Quantity: {item.quantity}</p>
+                <p className="text-gray-700 mb-2">Price: ${item.price}</p>
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => decreaseQuantity(item.id)}
@@ -115,7 +130,7 @@ function Cart() {
         )}
 
         <h3 className="text-xl font-bold mt-4">
-          🧾 Total: ₹{totalAmount}
+          🧾 Total: ${totalAmount}
         </h3>
       </div>
     </>

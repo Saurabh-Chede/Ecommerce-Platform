@@ -1,15 +1,17 @@
 import "./App.css";
 import Cart from "./components/Cart";
-import Expense from "./components/Expense";
-import Parent from "./components/Parent";
-import Scroll from "./components/Scroll";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProductDetail from "./components/ProductDetail";
 
 function App() {
   return (
     <>
-      <div className="px-2 py-2">
-        <Cart />
-      </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Cart />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+      </Routes>
+      </BrowserRouter>
     </>
   );
 }
