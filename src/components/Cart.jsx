@@ -27,21 +27,25 @@ function Cart() {
   };
 
   const increaseQuantity = (id) => {
-  const updatedCart = cart.map((item) =>
-    item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-  );
-  setCart(updatedCart);
-};
+    const updatedCart = cart.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCart(updatedCart);
+  };
 
-const decreaseQuantity = (id) => {
-  const updatedCart = cart
-    .map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-    )
-    .filter((item) => item.quantity > 0);
-    
-  setCart(updatedCart);
-};
+  const decreaseQuantity = (id) => {
+    const updatedCart = cart
+      .map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+      )
+      .filter((item) => item.quantity > 0);
+
+    setCart(updatedCart);
+  };
+
+  const totalAmount = cart.reduce((acc, item) => (
+    acc + item.price * item.quantity
+  ), 0)
 
   return (
     <>
@@ -109,6 +113,10 @@ const decreaseQuantity = (id) => {
             ))}
           </div>
         )}
+
+        <h3 className="text-xl font-bold mt-4">
+          🧾 Total: ₹{totalAmount}
+        </h3>
       </div>
     </>
   );
