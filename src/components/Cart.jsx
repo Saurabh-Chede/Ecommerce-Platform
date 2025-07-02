@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
+import Navbar from "./Navbar";
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -58,6 +59,7 @@ function Cart() {
 
   return (
     <>
+    <Navbar/>
       <input
         placeholder="...serach"
         type="text"
