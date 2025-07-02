@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import Pagination from "./Pagination";
 
 function Cart() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 6
+
   const [cart, setCart] = useState([]);
   const [query, setQuery] = useState("");
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=6")
+    fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -22,7 +24,12 @@ function Cart() {
     product.title.toLowerCase().includes(query)
   );
 
-  
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedProducts = filterProducts.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(filterProducts.length / itemsPerPage);
+
+
 
   const addToCart = (product) => {
     const exists = cart.find((item) => item.id === product.id);
@@ -78,12 +85,15 @@ function Cart() {
             placeholder="Search for products..."
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value.toLowerCase())}
+            onChange={(e) => {
+              setQuery(e.target.value.toLowerCase());
+              setCurrentPage(1); // Reset pagination when searching
+            }}
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {filterProducts.map((product) => (
+          {paginatedProducts.map((product) => (
             <div key={product.id} className="flex flex-col items-center">
               <Link
                 to={`/product/${product.id}`}
@@ -112,6 +122,14 @@ function Cart() {
           ))}
         </div>
       </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        setCurrentPage={setCurrentPage}
+
+
+      />
     </>
   );
 }

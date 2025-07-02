@@ -1,4 +1,3 @@
-import React from 'react'
 
 function CartItem({cart,increaseQuantity,decreaseQuantity,totalAmount,totalItems}) {
     return (

@@ -41,16 +41,17 @@ function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
                     onClick={() => setShowCart((prev) => !prev)}
                     className="bg-black text-white px-4 py-1 rounded"
                 >
-                    Cart ({totalItems})
+                    Cart {totalItems > 0 && `${totalItems}`}
                 </button>
 
                 {showcart && (
-                    <div className="fixed top-10 right-5 w-full max-w-[240px] hide-scrollbar max-h-[80vh] overflow-y-auto bg-yellow-100 shadow-lg rounded p-5 z-50">
+                    <div className="fixed top-10 right-5 w-full max-w-[240px] hide-scrollbar max-h-[80vh] overflow-y-auto bg-white shadow-lg rounded p-5 z-50">
                         <CartItem
                             cart={cart}
                             decreaseQuantity={decreaseQuantity}
                             increaseQuantity={increaseQuantity}
                             totalAmount={totalAmount}
+                            totalItems={totalItems}
                         />
                     </div>
                 )}
