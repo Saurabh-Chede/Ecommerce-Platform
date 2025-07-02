@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
-function Navbar({ cart , decreaseQuantity,increaseQuantity,totalAmount}) {
+function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
 
     const [showcart, setShowCart] = useState([])
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -29,15 +29,15 @@ function Navbar({ cart , decreaseQuantity,increaseQuantity,totalAmount}) {
                     Cart ({totalItems})
                 </button>
 
-                 {!showcart && (
-            <div className="absolute flex gap-10 right-0 mt-2 max-w-[700px] overflow-clip bg-yellow-100 shadow-lg rounded p-5 z-50">
-              {/* 👇 Render cart item component here */}
-              <CartItem cart={cart} 
-              decreaseQuantity={decreaseQuantity}
-              increaseQuantity={increaseQuantity}
-              totalAmount={totalAmount}/>
-            </div>
-          )}
+                {!showcart && (
+                    <div className="absolute flex gap-10 right-0 mt-2 max-w-[700px] overflow-clip bg-yellow-100 shadow-lg rounded p-5 z-50">
+                        {/* 👇 Render cart item component here */}
+                        <CartItem cart={cart}
+                            decreaseQuantity={decreaseQuantity}
+                            increaseQuantity={increaseQuantity}
+                            totalAmount={totalAmount} />
+                    </div>
+                )}
 
             </div>
         </nav>
