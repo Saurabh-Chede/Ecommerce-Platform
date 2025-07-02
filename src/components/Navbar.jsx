@@ -39,7 +39,7 @@ function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
             <div className="relative" ref={dropdownRef}>
                 <button
                     onClick={() => setShowCart((prev) => !prev)}
-                    className="bg-blue-500 text-white px-4 py-1 rounded"
+                    className="bg-black text-white px-4 py-1 rounded"
                 >
                     Cart ({totalItems})
                 </button>

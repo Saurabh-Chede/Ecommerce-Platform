@@ -24,7 +24,7 @@ function CartItem({cart,increaseQuantity,decreaseQuantity,totalAmount,totalItems
                             <div className="flex items-center gap-4">
                                 <button
                                     onClick={() => decreaseQuantity(item.id)}
-                                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                                    className="bg-black text-white px-3 py-1 rounded"
                                 >
                                     -
                                 </button>
@@ -33,7 +33,7 @@ function CartItem({cart,increaseQuantity,decreaseQuantity,totalAmount,totalItems
 
                                 <button
                                     onClick={() => increaseQuantity(item.id)}
-                                    className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded"
+                                    className="bg-black text-white px-3 py-1 rounded"
                                 >
                                     +
                                 </button>

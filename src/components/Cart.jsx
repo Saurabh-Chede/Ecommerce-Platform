@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
 function Cart() {
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 6
   const [cart, setCart] = useState([]);
   const [query, setQuery] = useState("");
   const [products, setProducts] = useState([]);
@@ -19,6 +21,8 @@ function Cart() {
   const filterProducts = products.filter((product) =>
     product.title.toLowerCase().includes(query)
   );
+
+  
 
   const addToCart = (product) => {
     const exists = cart.find((item) => item.id === product.id);
