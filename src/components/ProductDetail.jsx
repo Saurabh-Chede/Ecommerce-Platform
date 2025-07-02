@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function ProductDetail() {
   const { id } = useParams(); // Get product ID from URL
   const [product, setProduct] = useState(null);
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
@@ -15,6 +16,7 @@ function ProductDetail() {
 
   return (
     <div className="max-w-xl mx-auto p-4">
+      <button onClick={() => navigate(-1)} className="mb-4 text-blue-500">← Go Back</button>
       <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
       <img src={product.image} alt={product.title} className="h-60 mb-4" />
       <p className="text-lg font-semibold">₹{product.price}</p>
