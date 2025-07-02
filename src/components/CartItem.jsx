@@ -2,23 +2,23 @@ import React from 'react'
 
 function CartItem({cart,increaseQuantity,decreaseQuantity,totalAmount,totalItems}) {
     return (
-        <div>
+        <div className='flex flex-col'>
             <h2 className="text-2xl font-bold mb-4">Cart ({totalItems} items)</h2>
             {cart.length === 0 ? (
                 <p className="text-gray-600">Cart is empty</p>
             ) : (
-                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="flex flex-col gap-4">
                     {cart.map((item) => (
                         <div
                             key={item.id}
-                            className="bg-white p-4 rounded-xl shadow border"
+                            className="bg-white w-[160px] p-4 rounded-xl shadow border"
                         >
                             <img
                                 src={item.image}
                                 alt={item.title}
-                                className="h-32 mx-auto mb-3 object-contain"
+                                className="h-28 mx-auto mb-3 object-contain"
                             />
-                            <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                            {/* <h3 className="text-lg font-semibold mb-1">{item.title}</h3> */}
                             <p className="text-gray-700 mb-2">Quantity: {item.quantity}</p>
                             <p className="text-gray-700 mb-2">Price: ${item.price}</p>
                             <div className="flex items-center gap-4">

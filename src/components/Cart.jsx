@@ -59,8 +59,9 @@ function Cart() {
 
   return (
     <>
-    <Navbar/>
+    <Navbar cart={cart} decreaseQuantity={decreaseQuantity} increaseQuantity={increaseQuantity} totalAmount={totalAmount}/>
       <input
+        className="py-1.5 w-96 border border-b-blue-950/20"
         placeholder="...serach"
         type="text"
         value={query}
@@ -105,14 +106,16 @@ function Cart() {
         </div>
 
         {/* Cart Section */}
+
+
         
-        <CartItem
+        {/* <CartItem
           cart={cart}
           increaseQuantity={increaseQuantity}
           decreaseQuantity={decreaseQuantity}
           totalItems={totalItems}
           totalAmount={totalAmount}
-        />
+        /> */}
       </div>
     </>
   );
