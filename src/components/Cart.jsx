@@ -4,8 +4,8 @@ import Navbar from "./Navbar";
 import Pagination from "./Pagination";
 
 function Cart() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 6
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   const [cart, setCart] = useState([]);
   const [query, setQuery] = useState("");
@@ -29,15 +29,11 @@ function Cart() {
   const paginatedProducts = filterProducts.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filterProducts.length / itemsPerPage);
 
-
-
   const addToCart = (product) => {
     const exists = cart.find((item) => item.id === product.id);
     if (exists) {
       const updatedCart = cart.map((item) =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
       setCart(updatedCart);
     } else {
@@ -78,7 +74,6 @@ function Cart() {
       <div className="min-h-screen px-6 sm:px-16 md:px-24 font-sans mb-8">
         <h1 className="text-4xl font-bold mb-6 text-center">Products</h1>
 
-
         <div className="mb-6 flex justify-center">
           <input
             className="py-2 px-4 rounded-md w-full sm:w-96 border border-gray-300"
@@ -87,7 +82,7 @@ function Cart() {
             value={query}
             onChange={(e) => {
               setQuery(e.target.value.toLowerCase());
-              setCurrentPage(1); // Reset pagination when searching
+              setCurrentPage(1);
             }}
           />
         </div>
@@ -127,8 +122,6 @@ function Cart() {
         currentPage={currentPage}
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
-
-
       />
     </>
   );
