@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
 function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
+    const dropdownRef = useRef(null);
 
-    const [showcart, setShowCart] = useState([])
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowCart(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleOutsideClick);
+
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick), [];
+        };
+    });
+
+    const [showcart, setShowCart] = useState(false);
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
     return (
-        <nav className="flex items-center justify-between w-full">
+        <nav className="flex px-24 py-1.5 bg-amber-200 items-center justify-between w-full">
             <ul className="flex gap-4 items-center">
                 <li>
                     <Link to="/">Home</Link>
@@ -21,7 +36,7 @@ function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
                 </li>
             </ul>
 
-            <div className="relative">
+            <div className="relative" ref={dropdownRef}>
                 <button
                     onClick={() => setShowCart((prev) => !prev)}
                     className="bg-blue-500 text-white px-4 py-1 rounded"
@@ -29,8 +44,8 @@ function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
                     Cart ({totalItems})
                 </button>
 
-                {!showcart && (
-                    <div className="fixed top-16 right-5 w-full max-w-[240px] hide-scrollbar max-h-[80vh] overflow-y-auto bg-yellow-100 shadow-lg rounded p-5 z-50">
+                {showcart && (
+                    <div className="fixed top-10 right-5 w-full max-w-[240px] hide-scrollbar max-h-[80vh] overflow-y-auto bg-yellow-100 shadow-lg rounded p-5 z-50">
                         <CartItem
                             cart={cart}
                             decreaseQuantity={decreaseQuantity}
@@ -38,9 +53,7 @@ function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
                             totalAmount={totalAmount}
                         />
                     </div>
-
                 )}
-
             </div>
         </nav>
     );
