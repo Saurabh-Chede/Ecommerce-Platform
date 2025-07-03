@@ -45,7 +45,7 @@ function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
                 </button>
 
                 {showcart && (
-                    <div className="fixed top-10 right-5 w-full max-w-[240px] hide-scrollbar max-h-[80vh] overflow-y-auto bg-white shadow-lg rounded p-5 z-50">
+                    <div className="fixed right-0 top-12 w-full max-w-[240px] hide-scrollbar max-h-[80vh] overflow-y-auto bg-white shadow-lg rounded p-5 z-50">
                         <CartItem
                             cart={cart}
                             decreaseQuantity={decreaseQuantity}
