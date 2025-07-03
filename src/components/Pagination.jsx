@@ -1,4 +1,3 @@
-import React from 'react'
 
 function Pagination({totalPages,currentPage,setCurrentPage}) {
     return (
