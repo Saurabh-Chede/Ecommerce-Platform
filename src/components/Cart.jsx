@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Pagination from "./Pagination";
+import { useCart } from "../context/cartContext";
 
 function Cart() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-  const [cart, setCart] = useState([]);
   const [query, setQuery] = useState("");
   const [products, setProducts] = useState([]);
 
@@ -29,38 +29,7 @@ function Cart() {
   const paginatedProducts = filterProducts.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filterProducts.length / itemsPerPage);
 
-  const addToCart = (product) => {
-    const exists = cart.find((item) => item.id === product.id);
-    if (exists) {
-      const updatedCart = cart.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-      );
-      setCart(updatedCart);
-    } else {
-      setCart([...cart, { ...product, quantity: 1 }]);
-    }
-  };
-
-  const increaseQuantity = (id) => {
-    const updatedCart = cart.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    );
-    setCart(updatedCart);
-  };
-
-  const decreaseQuantity = (id) => {
-    const updatedCart = cart
-      .map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-      )
-      .filter((item) => item.quantity > 0);
-    setCart(updatedCart);
-  };
-
-  const totalAmount = cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const { cart, addToCart, increaseQuantity, decreaseQuantity, totalAmount } = useCart();
 
   return (
     <>
