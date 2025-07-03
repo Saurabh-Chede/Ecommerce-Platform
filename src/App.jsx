@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductDetail from "./components/ProductDetail";
 
 function App() {
+
   return (
     <>
     <BrowserRouter>
