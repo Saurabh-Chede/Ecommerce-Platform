@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Pagination from "./Pagination";
 import { useCart } from "../context/cartContext";
+import Footer from "./Footer";
 
 function Cart() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -92,6 +93,7 @@ function Cart() {
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
       />
+      <Footer/>
     </>
   );
 }
