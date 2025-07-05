@@ -59,7 +59,8 @@ function Cart() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {paginatedProducts.map((product) => (
-            <div key={product.id} className="flex flex-col items-center">
+           <div className="p-3 hover:shadow-md border border-dotted border-gray-900/25">
+             <div key={product.id} className="flex flex-col items-center">
               <Link
                 to={`/product/${product.id}`}
                 className="bg-white p-5 w-[300px] h-[250px] flex flex-col justify-between text-center"
@@ -84,6 +85,7 @@ function Cart() {
                 Add to Cart
               </button>
             </div>
+           </div>
           ))}
         </div>
       </div>
