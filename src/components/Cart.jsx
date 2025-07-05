@@ -62,7 +62,7 @@ function Cart() {
             <div key={product.id} className="flex flex-col items-center">
               <Link
                 to={`/product/${product.id}`}
-                className="bg-white border shadow p-5 w-[300px] h-[330px] flex flex-col justify-between text-center hover:shadow-md transition"
+                className="bg-white p-5 w-[300px] h-[250px] flex flex-col justify-between text-center"
               >
                 <img
                   src={product.image}
@@ -79,7 +79,7 @@ function Cart() {
 
               <button
                 onClick={() => addToCart(product)}
-                className="bg-black text-white px-4 py-2 rounded-md mt-3 w-[200px]"
+                className="bg-black text-white px-4 py-2  mt-3 w-[200px]"
               >
                 Add to Cart
               </button>
