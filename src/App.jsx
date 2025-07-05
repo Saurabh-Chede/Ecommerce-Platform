@@ -2,7 +2,7 @@ import "./App.css";
 import Cart from "./components/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductDetail from "./components/ProductDetail";
-import { CartProvider } from "./context/cartContext";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
 
