@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Pagination from "./Pagination";
-import { useCart } from "../context/cartContext";
+import { useCart } from "../context/CartContext";
 import Footer from "./Footer";
 
 function Cart() {
@@ -93,7 +93,7 @@ function Cart() {
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
       />
-      <Footer/>
+      <Footer />
     </>
   );
 }
