@@ -42,9 +42,9 @@ function Cart() {
       />
 
       <div className="min-h-screen px-6 sm:px-16 md:px-24 font-sans mb-8">
-        <h1 className="text-4xl font-bold mb-6 text-center">Products</h1>
+        {/* <h1 className="text-4xl font-bold mb-6 text-center">Products</h1> */}
 
-        <div className="mb-6 flex justify-center">
+        <div className="mb-6 mt-3 flex justify-center">
           <input
             className="py-2 px-4 rounded-md w-full sm:w-96 border border-gray-300"
             placeholder="Search for products..."
