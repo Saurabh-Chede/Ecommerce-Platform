@@ -2,17 +2,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {useCart} from '../context/CartContext'
 
-function ProductDetail() {
+function ProductDetail({products}) {
   const { id } = useParams(); // Get product ID from URL
-  const [product, setProduct] = useState(null);
+ 
   const navigate = useNavigate()
+   
   const {cart,addToCart,increaseQuantity, decreaseQuantity} = useCart()
+   const product = products.find((item) => item.id.toString() === id);
 
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }, [id]);
+  // useEffect(() => {
+  //   fetch(`https://fakestoreapi.com/products/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setProduct(data));
+  // }, [id]);
 
   if (!product) return <p>Loading...</p>;
 

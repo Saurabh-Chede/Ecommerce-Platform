@@ -5,21 +5,23 @@ import Pagination from "./Pagination";
 import { useCart } from "../context/CartContext";
 import Footer from "./Footer";
 
-function Cart() {
+function Cart({products}) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
   const [query, setQuery] = useState("");
-  const [products, setProducts] = useState([]);
+  
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((err) => console.error("API Error:", err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://fakestoreapi.com/products")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setProducts(data);
+  //     })
+  //     .catch((err) => console.error("API Error:", err));
+  // }, []);
+
+  console.log("Current Products:", products);
 
   const filterProducts = products.filter((product) =>
     product.title.toLowerCase().includes(query)
