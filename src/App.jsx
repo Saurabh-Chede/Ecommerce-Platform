@@ -47,6 +47,8 @@ import Cart from "./components/Cart";
 import ProductDetail from "./components/ProductDetail";
 import AdminDashboard from "./pages/AdminDashboard";
 import { fetchProducts, addProduct } from "./services/productService";
+import PrivateAdminRoute from "./components/PrivateAdminRoute";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -67,7 +69,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Cart products={products} />} />
           <Route path="/product/:id" element={<ProductDetail products={products} />} />
-          <Route path="/admin" element={<AdminDashboard onAddProduct={handleAddProduct} />} />
+          <Route
+            path="/admin"
+            element={
+              <PrivateAdminRoute>
+                <AdminDashboard onAddProduct={handleAddProduct} />
+              </PrivateAdminRoute>
+            }
+          />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>
