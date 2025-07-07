@@ -21,7 +21,6 @@ function Cart({products}) {
   //     .catch((err) => console.error("API Error:", err));
   // }, []);
 
-  console.log("Current Products:", products);
 
   const filterProducts = products.filter((product) =>
     product.title.toLowerCase().includes(query)
@@ -61,8 +60,8 @@ function Cart({products}) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {paginatedProducts.map((product) => (
-           <div className="p-3 hover:shadow-md border border-dotted border-gray-900/25">
-             <div key={product.id} className="flex flex-col items-center">
+           <div key={product.id} className="p-3 hover:shadow-md border border-dotted border-gray-900/25">
+             <div className="flex flex-col items-center">
               <Link
                 to={`/product/${product.id}`}
                 className="bg-white p-5 w-[300px] h-[250px] flex flex-col justify-between text-center"

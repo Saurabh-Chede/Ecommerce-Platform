@@ -24,9 +24,6 @@ function AdminDashboard({ onAddProduct }) {
         setImage('')
         setDescription('')
 
-        console.log("New product submitted:", newProduct);
-        console.log("onAddProduct fn:", onAddProduct);
-
     }
 
     return (
