@@ -69,7 +69,10 @@ import { Link } from "react-router-dom"
 import { ShoppingBag, X } from "lucide-react"
 import CartItem from "./CartItem"
 
-function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
+import { useCart } from "../context/CartContext";
+
+function Navbar() {
+   const { cart ,decreaseQuantity, increaseQuantity, totalAmount} = useCart();
   const dropdownRef = useRef(null)
   const [showCart, setShowCart] = useState(false)
 
@@ -99,7 +102,7 @@ function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
     }
   }, [showCart])
 
-  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0)
+  const totalItems = cart?.reduce((acc, item) => acc + item.quantity, 0)
 
   return (
     <>
@@ -121,6 +124,11 @@ function Navbar({ cart, decreaseQuantity, increaseQuantity, totalAmount }) {
           <li>
             <Link to="/about" className="text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium">
               About
+            </Link>
+          </li>
+           <li>
+            <Link to="/dashboard" className="text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium">
+              Dashboard
             </Link>
           </li>
         </ul>

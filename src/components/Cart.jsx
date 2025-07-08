@@ -35,12 +35,12 @@ function Cart({products}) {
 
   return (
     <>
-      <Navbar
+      {/* <Navbar
         cart={cart}
         decreaseQuantity={decreaseQuantity}
         increaseQuantity={increaseQuantity}
         totalAmount={totalAmount}
-      />
+      /> */}
 
       <div className="min-h-screen px-6 sm:px-16 md:px-24 font-sans mb-8">
         {/* <h1 className="text-4xl font-bold mb-6 text-center">Products</h1> */}

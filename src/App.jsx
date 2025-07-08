@@ -49,6 +49,10 @@ import AdminDashboard from "./pages/AdminDashboard";
 import { fetchProducts, addProduct } from "./services/productService";
 import PrivateAdminRoute from "./components/PrivateAdminRoute";
 import LoginPage from "./pages/LoginPage";
+import Dashboard from "./components/Dashboard";
+import ContactPage from "./components/Contact";
+import AboutPage from "./components/About";
+import Layout from "./components/Layout"; 
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -67,6 +71,7 @@ function App() {
     <CartProvider>
       <BrowserRouter>
         <Routes>
+        <Route path="/" element={<Layout />}>
           <Route path="/" element={<Cart products={products} />} />
           <Route path="/product/:id" element={<ProductDetail products={products} />} />
           <Route
@@ -77,7 +82,11 @@ function App() {
               </PrivateAdminRoute>
             }
           />
+           <Route path="/about" element={<AboutPage />} />
+           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
         </Routes>
       </BrowserRouter>
     </CartProvider>

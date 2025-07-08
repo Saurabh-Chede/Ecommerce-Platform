@@ -1,7 +1,10 @@
+import AdminDashboard from "./Admin"
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div>
+      <AdminDashboard/>
+    </div>
   )
 }
 
