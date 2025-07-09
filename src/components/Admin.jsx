@@ -33,7 +33,7 @@ import {
   Activity
 } from 'lucide-react';
 
-const AdminDashboard = () => {
+const AdminDashboa = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
   const [darkMode, setDarkMode] = useState(false);
@@ -422,4 +422,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default AdminDashboa;

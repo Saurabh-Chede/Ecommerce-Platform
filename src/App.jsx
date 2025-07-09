@@ -40,6 +40,7 @@ import "./App.css";
 
 // export default App;
 
+import { ClerkProvider } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "./context/CartContext";
@@ -47,12 +48,13 @@ import Cart from "./components/Cart";
 import ProductDetail from "./components/ProductDetail";
 import AdminDashboard from "./pages/AdminDashboard";
 import { fetchProducts, addProduct } from "./services/productService";
-import PrivateAdminRoute from "./components/PrivateAdminRoute";
 import LoginPage from "./pages/LoginPage";
-import Dashboard from "./components/Dashboard";
 import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
-import Layout from "./components/Layout"; 
+import Layout from "./components/Layout";
+import AdminRoute from "./routes/AdminRoute";
+
+const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -67,29 +69,39 @@ function App() {
     setProducts(updated);
   };
 
+
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Cart products={products} />} />
-          <Route path="/product/:id" element={<ProductDetail products={products} />} />
-          <Route
-            path="/admin"
-            element={
-              <PrivateAdminRoute>
-                <AdminDashboard onAddProduct={handleAddProduct} />
-              </PrivateAdminRoute>
-            }
-          />
-           <Route path="/about" element={<AboutPage />} />
-           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
-        </Routes>
-      </BrowserRouter>
-    </CartProvider>
+    <ClerkProvider publishableKey={clerkPubKey}>
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="/" element={<Cart products={products} />} />
+              <Route path="/product/:id" element={<ProductDetail products={products} />} />
+              <Route
+                path="/admin"
+                element={
+                  <AdminRoute>
+                    <AdminDashboard onAddProduct={handleAddProduct} />
+                  </AdminRoute>
+                }
+              />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <AdminRoute>
+                    <AdminDashboard onAddProduct={handleAddProduct} />
+                  </AdminRoute>
+                }
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
+    </ClerkProvider>
   );
 }
 

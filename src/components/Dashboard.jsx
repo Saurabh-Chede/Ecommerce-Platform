@@ -1,11 +1,11 @@
-import AdminDashboard from "./Admin"
+import AdminDashboard from "../pages/AdminDashboard"
 
 function Dashboard() {
   return (
     <div>
-      <AdminDashboard/>
+     <AdminDashboard/>
     </div>
   )
 }
 
-export default Dashboard
+// export default Dashboard

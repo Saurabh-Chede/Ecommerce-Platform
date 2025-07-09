@@ -68,13 +68,17 @@ import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { ShoppingBag, X } from "lucide-react"
 import CartItem from "./CartItem"
+import { useUser } from "@clerk/clerk-react"
 
 import { useCart } from "../context/CartContext";
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/clerk-react";
 
 function Navbar() {
-   const { cart ,decreaseQuantity, increaseQuantity, totalAmount} = useCart();
+  const { cart, decreaseQuantity, increaseQuantity, totalAmount } = useCart();
   const dropdownRef = useRef(null)
   const [showCart, setShowCart] = useState(false)
+   const { user } = useUser(); // Clerk user
+   const isAdmin = user?.primaryEmailAddress?.emailAddress === "saurabhchede21@gmail.com";
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -126,11 +130,30 @@ function Navbar() {
               About
             </Link>
           </li>
-           <li>
-            <Link to="/dashboard" className="text-gray-700 hover:text-gray-900 transition-colors duration-200 font-medium">
+          {isAdmin && (
+          <li>
+            <Link to="/dashboard" className="text-blue-600 font-semibold">
               Dashboard
             </Link>
           </li>
+        )}
+          <div className="flex items-center gap-4">
+            {/* 👉 If user is signed in, show UserButton */}
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
+
+            {/* 👉 If user is not signed in, show SignIn & SignUp buttons */}
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="bg-black text-white px-3 py-1 rounded">Sign In</button>
+              </SignInButton>
+
+              <SignUpButton mode="modal">
+                <button className="bg-white text-black border px-3 py-1 rounded">Sign Up</button>
+              </SignUpButton>
+            </SignedOut>
+          </div>
         </ul>
 
         <div className="relative" ref={dropdownRef}>

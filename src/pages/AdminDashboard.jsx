@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 function AdminDashboard({ onAddProduct }) {
 
@@ -23,8 +23,11 @@ function AdminDashboard({ onAddProduct }) {
         setPrice('')
         setImage('')
         setDescription('')
+        console.log("🚀 Received onAddProduct:", onAddProduct); // s
 
     }
+
+   
 
     return (
         <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
