@@ -53,6 +53,7 @@ import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import Layout from "./components/Layout";
 import AdminRoute from "./routes/AdminRoute";
+import { Toaster } from "react-hot-toast";
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -74,6 +75,7 @@ function App() {
     <ClerkProvider publishableKey={clerkPubKey}>
       <CartProvider>
         <BrowserRouter>
+        <Toaster position="top-right" reverseOrder={false} />
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<Cart products={products} />} />
