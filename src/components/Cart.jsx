@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Pagination from "./Pagination";
 import { useCart } from "../context/CartContext";
 import Footer from "./Footer";
+import Form from "./Form";
 
 function Cart({products}) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -97,6 +98,7 @@ function Cart({products}) {
         setCurrentPage={setCurrentPage}
       />
       <Footer />
+      <Form/>
     </>
   );
 }
