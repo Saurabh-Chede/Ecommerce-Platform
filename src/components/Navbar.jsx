@@ -143,11 +143,11 @@ function Navbar() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setShowCart((prev) => !prev)}
-              className="relative flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2.5 rounded-full transition-all duration-200 hover:scale-105 active:scale-95"
+              className="relative flex items-center gap-2 bg-gray-700 hover:bg-gray-800 text-white px-1.5 py-1.5 rounded-full transition-all duration-200 hover:scale-105 active:scale-95"
               aria-label="Shopping cart"
             >
               <ShoppingBag size={18} />
-              <span className="hidden sm:inline font-medium">Cart</span>
+              
               {totalItems > 0 && (
                 <span className="absolute -top-2 -right-2 bg-amber-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
                   {totalItems}
