@@ -95,7 +95,6 @@ import { useCart } from "../context/CartContext"
 import Pagination from "./Pagination"
 import Footer from "./Footer"
 import Form from "./Form"
-
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -120,7 +119,6 @@ function Cart({ products }) {
   return (
     <>
       <div className="min-h-screen px-6 sm:px-16 md:px-24 font-sans mb-8">
-        {/* Search */}
         <div className="my-6 flex justify-center">
           <Input
             type="text"
