@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useCart } from '@/context/CartContext';
 
 const CheckoutPage = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ const CheckoutPage = () => {
     expiry: '',
     cvv: ''
   });
+
+  const {totalAmount} = useCart()
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -39,7 +42,7 @@ const CheckoutPage = () => {
             </div>
             <div className="flex justify-between font-bold">
               <span>Total</span>
-              <span>$129.99</span>
+              <span>{totalAmount}</span>
             </div>
           </CardContent>
         </Card>

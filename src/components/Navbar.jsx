@@ -12,7 +12,7 @@ function Navbar() {
   const isAdmin = user?.primaryEmailAddress?.emailAddress === "saurabhchede21@gmail.com";
 
   return (
-    <nav className="flex justify-between items-center px-6 py-4 bg-white shadow">
+    <nav className="flex justify-between items-center px-10 py-4 bg-white shadow">
       <h1 className="text-4xl py-1 font-bold bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent">
         Shopinger
       </h1>
