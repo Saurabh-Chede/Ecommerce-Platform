@@ -53,7 +53,9 @@ import ContactPage from "./components/Contact";
 import AboutPage from "./components/About";
 import Layout from "./components/Layout";
 import AdminRoute from "./routes/AdminRoute";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "@/components/ui/sonner"
+import { ClerkFirebaseBridge } from "./components/ClerkFirebaseBridge";
+import CheckoutPage from "./components/Checkout";
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -73,9 +75,10 @@ function App() {
 
   return (
     <ClerkProvider publishableKey={clerkPubKey}>
+       <ClerkFirebaseBridge /> {/* 👈 Add this here */}
       <CartProvider>
         <BrowserRouter>
-        <Toaster position="top-right" reverseOrder={false} />
+         <Toaster richColors />
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<Cart products={products} />} />
@@ -100,6 +103,7 @@ function App() {
                 }
               />
             </Route>
+            <Route path="/checkout" element={<CheckoutPage />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>

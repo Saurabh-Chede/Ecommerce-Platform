@@ -72,11 +72,12 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { useUser } from "@clerk/clerk-react";
-import toast from "react-hot-toast";
+import { toast } from "sonner"
 import {
   saveCartToFirestore,
   getCartFromFirestore,
 } from "../services/cartService";
+
 
 // 1️⃣ Context Setup
 const CartContext = createContext();
@@ -87,6 +88,7 @@ export function CartProvider({ children }) {
   const { user } = useUser();
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true); // 👈 new state to track loading
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   // 🔄 Load cart from Firestore on login/refresh
   useEffect(() => {
@@ -122,7 +124,7 @@ export function CartProvider({ children }) {
       );
     } else {
       setCart((prev) => [...prev, { ...product, quantity: 1 }]);
-      toast.success(`${product.title} added to cart`);
+      toast(`${product.title} added to cart`);
     }
   };
 
@@ -161,6 +163,8 @@ export function CartProvider({ children }) {
         increaseQuantity,
         decreaseQuantity,
         totalAmount,
+        isCartOpen,
+        setIsCartOpen,
       }}
     >
       {children}
