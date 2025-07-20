@@ -6,9 +6,9 @@ import { useUser, SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } 
 
 function Navbar() {
   const { user } = useUser();
-  const { cart, decreaseQuantity, increaseQuantity, totalAmount, setIsCartOpen, isCartOpen } = useCart();
+  const { cart, decreaseQuantity, increaseQuantity, totalAmount, setIsCartOpen, isCartOpen ,totalItems} = useCart();
 
-  const totalItems = cart?.reduce((acc, item) => acc + item.quantity, 0);
+  
   const isAdmin = user?.primaryEmailAddress?.emailAddress === "saurabhchede21@gmail.com";
 
   return (

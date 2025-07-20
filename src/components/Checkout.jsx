@@ -15,7 +15,7 @@ const CheckoutPage = () => {
     cvv: ''
   });
 
-  const {totalAmount} = useCart()
+  const { totalAmount,totalItems } = useCart()
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -30,20 +30,28 @@ const CheckoutPage = () => {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-md mx-auto">
         <h1 className="text-2xl font-bold mb-6">Checkout</h1>
-        
+
         <Card className="mb-6">
           <CardHeader>
             <CardTitle>Order Summary</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-between mb-2">
-              <span>Wireless Headphones</span>
-              <span>$129.99</span>
-            </div>
-            <div className="flex justify-between font-bold">
-              <span>Total</span>
-              <span>{totalAmount}</span>
-            </div>
+            {totalItems.length > 0 ? (
+              <>
+                {totalItems.map((item) => (
+                  <div key={item.id} className="flex justify-between mb-2">
+                    <span>{item.name} x {item.quantity}</span>
+                    <span>${(item.price * item.quantity).toFixed(2)}</span>
+                  </div>
+                ))}
+                <div className="flex justify-between font-bold mt-4 border-t pt-2">
+                  <span>Total</span>
+                  <span>${totalAmount.toFixed(2)}</span>
+                </div>
+              </>
+            ) : (
+              <p>Your cart is empty.</p>
+            )}
           </CardContent>
         </Card>
 
@@ -63,7 +71,7 @@ const CheckoutPage = () => {
                   required
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="name">Full Name</Label>
                 <Input
@@ -73,7 +81,7 @@ const CheckoutPage = () => {
                   required
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="address">Address</Label>
                 <Input
@@ -83,7 +91,7 @@ const CheckoutPage = () => {
                   required
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="cardNumber">Card Number</Label>
                 <Input
@@ -94,7 +102,7 @@ const CheckoutPage = () => {
                   required
                 />
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="expiry">Expiry</Label>
@@ -117,7 +125,7 @@ const CheckoutPage = () => {
                   />
                 </div>
               </div>
-              
+
               <Button type="submit" className="w-full mt-6">
                 Complete Order
               </Button>

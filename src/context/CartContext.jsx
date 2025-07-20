@@ -135,6 +135,8 @@ export function CartProvider({ children }) {
       )
     );
 
+  const totalItems = cart?.reduce((acc, item) => acc + item.quantity, 0);
+
   const decreaseQuantity = (id) =>
     setCart((prev) =>
       prev
@@ -165,6 +167,7 @@ export function CartProvider({ children }) {
         totalAmount,
         isCartOpen,
         setIsCartOpen,
+        totalItems
       }}
     >
       {children}

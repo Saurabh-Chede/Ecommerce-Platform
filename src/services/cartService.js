@@ -30,7 +30,7 @@ import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 
 // Save user's cart to Firestore
 export const saveCartToFirestore = async (userId, cartItems) => {
-  const ref = doc(db, "cart", userId);
+  const ref = doc(db, "carts", userId);
   await setDoc(ref, {
     items: cartItems,
     updatedAt: serverTimestamp()
