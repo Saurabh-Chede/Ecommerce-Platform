@@ -1,5 +1,6 @@
 import React from 'react';
 import { Users, Heart, Shield, Truck } from 'lucide-react';
+import { motion, scale } from "motion/react"
 
 const AboutPage = () => {
   const stats = [
@@ -43,14 +44,17 @@ const AboutPage = () => {
     <div className="min-h-screen bg-white text-black">
       {/* Hero Section */}
       <section className="py-32">
-        <div className="max-w-4xl mx-auto px-8 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }} className="max-w-4xl mx-auto px-8 text-center">
           <h1 className="text-6xl font-light mb-12 tracking-tight">
             About Us
           </h1>
           <p className="text-xl font-light leading-relaxed max-w-2xl mx-auto">
             We create seamless shopping experiences through thoughtful design and unwavering commitment to quality.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Stats Section */}
@@ -69,7 +73,10 @@ const AboutPage = () => {
 
       {/* Story Section */}
       <section className="py-32 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: "easeOut" }} className="max-w-4xl mx-auto px-8">
           <div className="grid md:grid-cols-2 gap-20">
             <div>
               <h2 className="text-3xl font-light mb-8">Our Story</h2>
@@ -79,7 +86,7 @@ const AboutPage = () => {
                 Founded in 2018, we began with a simple belief: online shopping should be effortless and enjoyable.
               </p>
               <p>
-                What started as a small team has grown into a global marketplace serving millions of customers. 
+                What started as a small team has grown into a global marketplace serving millions of customers.
                 We've never lost sight of our core mission.
               </p>
               <p>
@@ -87,7 +94,7 @@ const AboutPage = () => {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Mission Section */}
@@ -116,7 +123,7 @@ const AboutPage = () => {
           <div className="text-center mb-20">
             <h2 className="text-3xl font-light">Our Values</h2>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {values.map((value, index) => (
               <div key={index} className="text-center">
@@ -135,7 +142,7 @@ const AboutPage = () => {
           <div className="text-center mb-20">
             <h2 className="text-3xl font-light">Leadership</h2>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-12">
             {teamMembers.map((member, index) => (
               <div key={index} className="text-center py-8">
@@ -153,18 +160,18 @@ const AboutPage = () => {
           <div className="text-center mb-20">
             <h2 className="text-3xl font-light">Recognition</h2>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-12 text-center">
             <div className="py-8">
               <h3 className="text-lg font-light mb-2">Best Platform 2024</h3>
               <p className="text-sm text-gray-600 uppercase tracking-wide">Tech Innovation</p>
             </div>
-            
+
             <div className="py-8">
               <h3 className="text-lg font-light mb-2">Customer Choice</h3>
               <p className="text-sm text-gray-600 uppercase tracking-wide">E-commerce Excellence</p>
             </div>
-            
+
             <div className="py-8">
               <h3 className="text-lg font-light mb-2">Fastest Growing</h3>
               <p className="text-sm text-gray-600 uppercase tracking-wide">Business Innovation</p>
