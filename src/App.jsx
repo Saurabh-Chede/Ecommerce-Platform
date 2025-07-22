@@ -56,6 +56,7 @@ import AdminRoute from "./routes/AdminRoute";
 import { Toaster } from "@/components/ui/sonner"
 import { ClerkFirebaseBridge } from "./components/ClerkFirebaseBridge";
 import CheckoutPage from "./components/Checkout";
+import AutoBuilder from "./components/AutoBuilder";
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -104,6 +105,7 @@ function App() {
               />
             </Route>
             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/autobuilder" element={<AutoBuilder />} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
