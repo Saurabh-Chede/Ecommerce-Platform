@@ -2,7 +2,7 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({apiKey:'AIzaSyDsaMWw34Gu6FLvkE3hpBUNFvD8Jx0ctIM'});
+const ai = new GoogleGenAI({apiKey:''});
 
 export async function generateWebsiteCode(prompt) {
   const response = await ai.models.generateContent({
