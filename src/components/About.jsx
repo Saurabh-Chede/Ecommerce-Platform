@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, Heart, Shield, Truck } from 'lucide-react';
 import { motion, scale } from "motion/react"
+import Content from './Content';
 
 const AboutPage = () => {
   const stats = [
@@ -42,6 +43,7 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen bg-white text-black">
+      <Content className="relative"></Content>
       {/* Hero Section */}
       <section className="py-32">
         <motion.div

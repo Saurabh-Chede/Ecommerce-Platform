@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useCart } from '@/context/CartContext';
+import React, { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useCart } from "@/context/CartContext";
 
 const CheckoutPage = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    address: '',
-    cardNumber: '',
-    expiry: '',
-    cvv: ''
+    email: "",
+    name: "",
+    address: "",
+    cardNumber: "",
+    expiry: "",
+    cvv: "",
   });
 
-  const { totalAmount,totalItems } = useCart()
+  const { totalAmount, cart } = useCart();
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Order placed!');
+    alert("Order placed!");
   };
 
   return (
@@ -36,11 +36,13 @@ const CheckoutPage = () => {
             <CardTitle>Order Summary</CardTitle>
           </CardHeader>
           <CardContent>
-            {totalItems.length > 0 ? (
+            {cart.length > 0 ? (
               <>
-                {totalItems.map((item) => (
+                {cart.map((item) => (
                   <div key={item.id} className="flex justify-between mb-2">
-                    <span>{item.name} x {item.quantity}</span>
+                    <span>
+                      {item.name} x {item.quantity}
+                    </span>
                     <span>${(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
@@ -54,7 +56,6 @@ const CheckoutPage = () => {
             )}
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader>
             <CardTitle>Payment Details</CardTitle>
@@ -67,7 +68,7 @@ const CheckoutPage = () => {
                   id="email"
                   type="email"
                   value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
                   required
                 />
               </div>
@@ -77,7 +78,7 @@ const CheckoutPage = () => {
                 <Input
                   id="name"
                   value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
                   required
                 />
               </div>
@@ -87,7 +88,7 @@ const CheckoutPage = () => {
                 <Input
                   id="address"
                   value={formData.address}
-                  onChange={(e) => handleInputChange('address', e.target.value)}
+                  onChange={(e) => handleInputChange("address", e.target.value)}
                   required
                 />
               </div>
@@ -98,7 +99,9 @@ const CheckoutPage = () => {
                   id="cardNumber"
                   placeholder="1234 5678 9012 3456"
                   value={formData.cardNumber}
-                  onChange={(e) => handleInputChange('cardNumber', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("cardNumber", e.target.value)
+                  }
                   required
                 />
               </div>
@@ -110,7 +113,9 @@ const CheckoutPage = () => {
                     id="expiry"
                     placeholder="MM/YY"
                     value={formData.expiry}
-                    onChange={(e) => handleInputChange('expiry', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("expiry", e.target.value)
+                    }
                     required
                   />
                 </div>
@@ -120,7 +125,7 @@ const CheckoutPage = () => {
                     id="cvv"
                     placeholder="123"
                     value={formData.cvv}
-                    onChange={(e) => handleInputChange('cvv', e.target.value)}
+                    onChange={(e) => handleInputChange("cvv", e.target.value)}
                     required
                   />
                 </div>

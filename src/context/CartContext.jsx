@@ -87,28 +87,32 @@ export const useCart = () => useContext(CartContext);
 export function CartProvider({ children }) {
   const { user } = useUser();
   const [cart, setCart] = useState([]);
-  const [loading, setLoading] = useState(true); // 👈 new state to track loading
+  const [loading, setLoading] = useState(true); 
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [hasFetchedCart, setHasFetchedCart] = useState(false);
 
-  // 🔄 Load cart from Firestore on login/refresh
+
   useEffect(() => {
     const fetchCart = async () => {
       if (user) {
         const savedCart = await getCartFromFirestore(user.id);
         setCart(savedCart);
+        setHasFetchedCart(true); 
       }
-      setLoading(false); // ✅ done loading
+      setLoading(false);
     };
-
     fetchCart();
   }, [user]);
 
-  // 💾 Save cart to Firestore on every update
   useEffect(() => {
-    if (user && !loading) {
+    if (user && hasFetchedCart) {
       saveCartToFirestore(user.id, cart);
     }
-  }, [cart, user, loading]);
+  }, [cart, user, hasFetchedCart]);
+
+
+
+
 
   // Cart actions
   const addToCart = (product) => {
