@@ -6,7 +6,7 @@ import Footer from "./Footer"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import SpringRender from "./Spring"
+
 
 function Cart({ products }) {
   const [currentPage, setCurrentPage] = useState(1)
@@ -78,7 +78,6 @@ function Cart({ products }) {
         setCurrentPage={setCurrentPage}
       />
       <Footer />
-      <SpringRender></SpringRender>
     </>
   )
 }
