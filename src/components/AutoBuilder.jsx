@@ -16,12 +16,13 @@ function AutoBuilder() {
   };
 
   return (
-    <div className="min-h-screen bg-white p-4 space-y-4">
-      <h1 className="text-2xl font-bold">AI Website Builder</h1>
+    <div className="min-h-screen w-full flex bg-white space-y-4">
+       <h1 className="text-2xl font-bold">AI Website Builder</h1>
       <PromptInput onGenerate={handleGenerate} />
       {loading && <p>Generating code...</p>}
-      <CodeEditor code={code} setCode={setCode} />
-      <LivePreview code={code} />
+      <CodeEditor code={code} setCode={setCode} /> 
+     
+       <LivePreview code={code} />
     </div>
   );
 }
