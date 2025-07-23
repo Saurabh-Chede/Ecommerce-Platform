@@ -1,7 +1,6 @@
 import { useState } from "react";
 import PromptInput from "./PromptInput";
 import CodeEditor from "./CodeEditor";
-import LivePreview from "./LivePreview";
 import { generateWebsiteCode } from "@/services/gemini";
 
 function AutoBuilder() {
@@ -16,12 +15,13 @@ function AutoBuilder() {
   };
 
   return (
-    <div className="min-h-screen w-full flex bg-white space-y-4">
-      <h1 className="text-2xl font-bold">AI Website Builder</h1>
-      <PromptInput onGenerate={handleGenerate} />
+    <div className="w-full justify-center flex-col mx-auto p-6 flex bg-white">
+      <h1 className="text-2xl text-center font-bold">AI Website Builder</h1>
+     <div className="flex flex-col max-w-[900px] w-full mx-auto mt-5">
+       <PromptInput onGenerate={handleGenerate} />
       {loading && <p>Generating code...</p>}
       <CodeEditor code={code} setCode={setCode} />
-      <LivePreview code={code} />
+     </div>
     </div>
   );
 }
