@@ -43,7 +43,6 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <Content className="relative"></Content>
       {/* Hero Section */}
       <section className="py-32">
         <motion.div

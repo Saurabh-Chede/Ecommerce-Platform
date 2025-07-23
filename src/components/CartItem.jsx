@@ -1,4 +1,3 @@
-// components/CartSheet.jsx
 import {
   Sheet,
   SheetContent,

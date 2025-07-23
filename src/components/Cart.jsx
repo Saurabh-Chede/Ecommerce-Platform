@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useCart } from "../context/CartContext"
@@ -9,14 +8,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import SpringRender from "./Spring"
 
-
 function Cart({ products }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [query, setQuery] = useState("")
-
   const itemsPerPage = 6
   const { addToCart } = useCart()
-
+  
   const filterProducts = products.filter((product) =>
     product.title.toLowerCase().includes(query)
   )
