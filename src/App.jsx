@@ -1,45 +1,4 @@
 import "./App.css";
-// import Cart from "./components/Cart";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import ProductDetail from "./components/ProductDetail";
-// import { CartProvider } from "./context/CartContext";
-// import AdminDashboard from "./pages/AdminDashboard";
-// import { useState ,useEffect} from "react";
-
-// function App() {
-//  const [products, setProducts] = useState(() => {
-//     const saved = localStorage.getItem("products");
-//     return saved ? JSON.parse(saved) : [];
-//   });
-
-//   useEffect(() => {
-//     localStorage.setItem("products", JSON.stringify(products));
-//   }, [products]);
-
-//   const handleAddProduct = (newProduct) => {
-//     setProducts((prev) => [...prev, newProduct]);
-//   };
-
-//   return (
-//     <>
-//       <CartProvider>
-//         <BrowserRouter>
-//           <Routes>
-//             <Route path="/" element={<Cart products={products} />} />
-//             <Route path="/product/:id" element={<ProductDetail products={products} />} />
-//             <Route
-//               path="/admin"
-//               element={<AdminDashboard onAddProduct={handleAddProduct} />}
-//             />
-//           </Routes>
-//         </BrowserRouter>
-//       </CartProvider>
-//     </>
-//   );
-// }
-
-// export default App;
-
 import { ClerkProvider } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -57,6 +16,7 @@ import { Toaster } from "@/components/ui/sonner"
 import { ClerkFirebaseBridge } from "./components/ClerkFirebaseBridge";
 import CheckoutPage from "./components/Checkout";
 import AutoBuilder from "./components/AutoBuilder";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -73,8 +33,11 @@ function App() {
     setProducts(updated);
   };
 
+  const pizza = new QueryClient()
+
 
   return (
+    <QueryClientProvider client={pizza}>
     <ClerkProvider publishableKey={clerkPubKey}>
        <ClerkFirebaseBridge /> {/* 👈 Add this here */}
       <CartProvider>
@@ -110,6 +73,7 @@ function App() {
         </BrowserRouter>
       </CartProvider>
     </ClerkProvider>
+    </QueryClientProvider>
   );
 }
 
