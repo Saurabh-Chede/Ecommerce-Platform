@@ -14,7 +14,7 @@ function Navbar() {
   return (
     <nav className="flex justify-between items-center px-10 py-4 bg-white shadow">
       <h1 className="text-4xl py-1 font-bold bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent">
-        Shopinger
+        Shop
       </h1>
 
       <ul className="flex gap-8 items-center">
