@@ -8,18 +8,19 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { useQuery } from "@tanstack/react-query"
 import { fetchProducts } from "../services/productService";
+import { Loader2 } from "lucide-react"
 
-function Cart({  }) {
+function Cart({ }) {
   const [currentPage, setCurrentPage] = useState(1)
   const [query, setQuery] = useState("")
   const itemsPerPage = 6
   const { addToCart } = useCart()
 
   const { data: products = [], isLoading, isError, error } = useQuery({
-  queryKey: ["products"],
-  queryFn: fetchProducts,
-});
-  
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
   const filterProducts = products.filter((product) =>
     product.title.toLowerCase().includes(query)
   )
@@ -46,7 +47,7 @@ function Cart({  }) {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
           {paginatedProducts.map((product) => (
             <Card
               key={product.id}
@@ -76,7 +77,47 @@ function Cart({  }) {
               </CardContent>
             </Card>
           ))}
-        </div>
+        </div> */}
+        {isLoading ? (
+          <div className="flex justify-center items-center h-[300px]">
+            <Loader2 className="animate-spin w-10 h-10 text-gray-500" />
+            {/* या चाहो तो simple text भी दिखा सकते हो */}
+            {/* <p>Loading...</p> */}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+            {paginatedProducts.map((product) => (
+              <Card
+                key={product.id}
+                className="w-full max-w-xs sm:max-w-sm hover:shadow-md transition"
+              >
+                <Link
+                  to={`/product/${product.id}`}
+                  className="p-5 h-[250px] flex flex-col justify-between text-center"
+                >
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="h-32 mx-auto mb-3 object-contain"
+                  />
+                  <div className="flex-1">
+                    <h2 className="text-md font-semibold mb-2 line-clamp-2">
+                      {product.title}
+                    </h2>
+                    <p className="text-gray-700 text-lg">${product.price}</p>
+                  </div>
+                </Link>
+
+                <CardContent className="flex justify-center">
+                  <Button onClick={() => addToCart(product)} className="w-full">
+                    Add to Cart
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+
       </div>
       <Pagination
         currentPage={currentPage}
