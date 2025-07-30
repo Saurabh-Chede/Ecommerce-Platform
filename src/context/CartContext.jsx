@@ -75,9 +75,9 @@ export function CartProvider({ children }) {
     0
   );
 
-  // if (loading) {
-  //   return <div className="p-4">Loading cart...</div>;
-  // }
+  if (loading) {
+    return <div className="p-4">Loading cart...</div>;
+  }
 
   // Return provider
   return (
