@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { useQuery } from "@tanstack/react-query"
 import { fetchProducts } from "../services/productService";
 import { Loader2 } from "lucide-react"
+import PostCard from "./PostCard"
 
 function Cart({ }) {
   const [currentPage, setCurrentPage] = useState(1)
@@ -92,6 +93,7 @@ function Cart({ }) {
         setCurrentPage={setCurrentPage}
       />
       <Footer />
+      <PostCard/>
     </>
   )
 }
